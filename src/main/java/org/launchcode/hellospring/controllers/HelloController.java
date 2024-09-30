@@ -52,9 +52,33 @@ public class HelloController {
 //    }
 
     // Responds to get and post requests at /hello?coder=LaunchCoder
+//    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
+//    public String hello(@RequestParam String coder) {
+//        return "Hello, " + coder + "!";
+//    }
+
+
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    public String hello(@RequestParam String coder) {
-        return "Hello, " + coder + "!";
+    public static String createMessage(@RequestParam String name, String language) {
+            String greet;
+        if (language.equals("English")){
+            greet = "Hello, " + name + "!";
+        } else if (language.equals("French")) {
+            greet = "Bonjour, " + name + "!";
+        } else if (language.equals("Spanish")) {
+            greet = "Hola, " + name + "!";
+        } else if (language.equals("Hindi")) {
+            greet = "Namaste, " + name + "!";
+        }else {
+            greet = "Vanakkam, " + name + "!";
+        }
+         return "<html>" +
+                 "<body>" +
+                 "<p style=\"background-color:DodgerBlue;\">" + greet +
+                 "</p>" +
+                 "</body>" +
+                 "</html>";
+
     }
 
     //URL: localhost:8080/hello/form
@@ -65,7 +89,14 @@ public class HelloController {
                 "<html>" +
                         "<body>" +
                         "<form method = 'post' action = '/hello'>" +
-                        "<input type = 'text' name = 'coder' />" +
+                        "<input type = 'text' name = 'name' />" +
+                        "<select name='language' id='lang'>" +
+                        "  <option value='English'>English</option>" +
+                        "  <option value='French'>French</option>" +
+                        "  <option value='Spanish'>Spanish</option>" +
+                        "  <option value='Hindi'>Hindi</option>" +
+                        "  <option value='Tamil'>Tamil</option>" +
+                        "</select>" +
                         "<input type = 'submit' value = 'Greet Me!' />" +
                         "</form>" +
                         "</body>" +
