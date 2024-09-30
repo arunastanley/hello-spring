@@ -53,7 +53,6 @@ public class HelloController {
 
     // Responds to get and post requests at /hello?coder=LaunchCoder
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
-    @ResponseBody
     public String hello(@RequestParam String coder) {
         return "Hello, " + coder + "!";
     }
@@ -74,3 +73,4 @@ public class HelloController {
         return html;
     }
 }
+
